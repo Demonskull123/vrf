@@ -200,7 +200,7 @@ local rail = bx(main, P.rail, 8); rail.Size = UDim2.new(0, SIDE, 1, -TOP); rail.
 local content = fr(main, 4); content.Size = UDim2.new(1, -SIDE - 12, 1, -TOP - 12); content.Position = UDim2.fromOffset(SIDE + 6, TOP + 6)
 content.ClipsDescendants = true
 
-local pages, navBtns, active = {}, {}, nil
+local pages, navBtns, active, tabCount = {}, {}, nil, 0
 local function selectTab(name)
 	if active == name then return end
 	for n, pg in pairs(pages) do pg.Visible = (n == name) end
@@ -214,7 +214,7 @@ local function selectTab(name)
 end
 
 local function makeTab(name, icon)
-	local b = Instance.new("TextButton"); b.Size = UDim2.new(1, -12, 0, 38); b.Position = UDim2.fromOffset(6, 8 + (#pages) * 44)
+	local b = Instance.new("TextButton"); b.Size = UDim2.new(1, -12, 0, 38); b.Position = UDim2.fromOffset(6, 8 + tabCount * 44); tabCount = tabCount + 1
 	b.BackgroundColor3 = P.card; b.BackgroundTransparency = 1; b.Text = ""; b.BorderSizePixel = 0; b.ZIndex = 9; b.Parent = rail; corner(b, 10)
 	local ic = tx(b, icon, F_M, 16, P.dim); ic.Size = UDim2.fromOffset(28, 38); ic.Position = UDim2.fromOffset(6, 0)
 	ic.TextXAlignment = Enum.TextXAlignment.Center; ic.ZIndex = 10
